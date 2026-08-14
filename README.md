@@ -56,15 +56,6 @@ Our vision is to make programming more natural and accessible by allowing develo
 </table>
 </div>
 
-## 🎬 Demo Videos
-
-### 1. Wuhan University Public Opinion Simulation + MiroFish Project Introduction
-
-<div align="center">
-<a href="https://www.bilibili.com/video/BV1VYBsBHEMY/" target="_blank"><img src="./static/image/武大模拟演示封面.png" alt="H-AI Demo Video" width="75%"/></a>
-
-</div>
-
 ## 🛠️ Tech Stack
 
 ### Frontend
