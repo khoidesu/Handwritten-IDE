@@ -220,13 +220,34 @@ hf download microsoft/trocr-base-handwritten \
 
 The project relies on [Judge0](https://python.docs.judge0.com/master/index.html) to safely execute code. You must have [Docker](https://www.docker.com/products/docker-desktop/) running.
 
+First, download and configure Judge0:
+
 ```bash
-cd judge0/judge0
+# Create a directory for Judge0
+mkdir -p judge0
+cd judge0
+
+# Clone the stable release (v1.13.1)
+git clone -b v1.13.1 https://github.com/judge0/judge0.git
+
+cd judge0
+```
+
+Then start the Judge0 services:
+
+```bash
+# Start the database and redis first
+docker compose up -d db redis
+
+# Wait ~10 seconds for the database to fully initialize before starting the rest
+sleep 10
 docker compose up -d
+
+# Return to the project root
 cd ../..
 ```
 
-_Note: Wait a few seconds for the database and worker containers to fully initialize before running code._
+_Note: Wait a few seconds for the worker containers to fully initialize before running code._
 
 ### 6. Run the Backend Server
 
