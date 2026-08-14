@@ -1,0 +1,14 @@
+transformers
+opencv-python
+accelerate
+pillow
+sentencepiece
+tiktoken
+tokenizers
+google-generativeai
+python-dotenv
+Flask
+numpy
+requests
+torch
+judge0

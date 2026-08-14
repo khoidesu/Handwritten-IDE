@@ -1,0 +1,19 @@
+# Environments
+.venv/
+.venv311/
+.env
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Project specific
+temp/
+scratch/
+models/
+
+# macOS
+.DS_Store
+
+# Judge0 db/redis data (you may want to keep judge0/judge0/ configs but ignore the db data inside)
+judge0/

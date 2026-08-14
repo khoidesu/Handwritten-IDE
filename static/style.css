@@ -1,0 +1,117 @@
+.layout-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr 400px;
+  grid-template-rows: 64px calc(100vh - 64px - 32px) auto;
+  height: 100vh;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .layout-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    overflow: auto;
+  }
+}
+.industrial-border {
+  border: 1px solid #000000;
+}
+.industrial-border-b {
+  border-bottom: 1px solid #000000;
+}
+.industrial-border-r {
+  border-right: 1px solid #000000;
+}
+.industrial-border-l {
+  border-left: 1px solid #000000;
+}
+.industrial-border-t {
+  border-top: 1px solid #000000;
+}
+.blueprint-grid {
+  background-color: #f9f9f9;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(189, 189, 189, 0.3) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(189, 189, 189, 0.3) 1px,
+      transparent 1px
+    );
+  background-size: 20px 20px;
+}
+.pip {
+  width: 8px;
+  height: 8px;
+  background-color: #a43e00;
+  border-radius: 50%;
+  display: inline-block;
+}
+.primary-btn {
+  background-color: #a43e00;
+  color: #ffffff;
+  border: 1px solid #000000;
+  transition: all 0.15s ease-in-out;
+}
+.primary-btn:hover {
+  background-color: #ffffff;
+  color: #a43e00;
+}
+
+/* Dark Mode Styles */
+html.dark {
+  background: #121212;
+  color: #ffffff;
+}
+html.dark .bg-surface-container-lowest {
+  background-color: #121212;
+}
+html.dark .bg-surface-bright {
+  background-color: #1e1e1e;
+}
+html.dark .bg-surface-container-highest {
+  background-color: #2a2a2a;
+}
+html.dark .text-on-surface {
+  color: #ffffff;
+}
+html.dark .industrial-border,
+html.dark .industrial-border-b,
+html.dark .industrial-border-r,
+html.dark .industrial-border-l,
+html.dark .industrial-border-t {
+  border-color: #ffffff;
+}
+html.dark .blueprint-grid {
+  background-color: #121212;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    );
+}
+html.dark .grid-border,
+html.dark .divide-grid-border > :not([hidden]) ~ :not([hidden]) {
+  border-color: #ffffff;
+}
+html.dark .divide-grid-line > :not([hidden]) ~ :not([hidden]) {
+  border-color: #444444;
+}
+html.dark .border-grid-line {
+  border-color: #444444;
+}
+html.dark .primary-btn {
+  border-color: #ffffff;
+}
+html.dark .text-on-surface-variant {
+  color: #cccccc;
+}

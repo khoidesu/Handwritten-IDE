@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;700&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="../static/script.js"></script>
+  <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body class="font-body-md text-on-surface h-full m-0 overflow-hidden text-body-md">
+  <div class="layout-grid w-full h-full">
+    <!-- TopNavBar -->
+    <!-- Shared Component Logic: Active state is Canvas -->
+    <nav
+      class="col-span-3 row-start-1 bg-surface-container-lowest industrial-border-b flex justify-between items-center w-full px-margin-page h-16 z-10"
+      aria-label="Top navigation">
+      <div class="flex items-center gap-4 h-full flex-1">
+        <img src="../static/asset/logo.png" alt="HandWrite AI Logo" class="h-8 w-8 object-contain" />
+        <span
+          class="font-headline-lg text-headline-lg-mobile uppercase font-bold tracking-tighter text-on-surface">Ha-AI
+          IDE</span>
+      </div>
+
+      <div class="hidden md:flex items-center h-full divide-x divide-grid-border border-l border-r border-grid-border">
+        <a href="#"
+          class="px-6 h-full flex items-center justify-center text-primary border-b-2 border-primary font-bold font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors duration-150">Canvas</a>
+        <a href="#"
+          class="px-6 h-full flex items-center justify-center text-on-surface-variant font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors duration-150">Library</a>
+        <a href="#" id="nav-settings"
+          class="px-6 h-full flex items-center justify-center text-on-surface-variant font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors duration-150">Settings</a>
+        <a href="#"
+          class="px-6 h-full flex items-center justify-center text-on-surface-variant font-label-sm text-label-sm uppercase hover:bg-primary hover:text-on-primary transition-colors duration-150">Account</a>
+      </div>
+
+      <div class="flex-1 hidden md:block"></div>
+    </nav>
+
+    <!-- SideNavBar -->
+    <!-- Shared Component Logic: Left anchored, active state is Pen -->
+    <aside
+      class="col-start-1 row-start-2 row-span-1 bg-surface-container-lowest industrial-border-r flex flex-col w-20 h-full z-10 py-4 divide-y divide-grid-border">
+      <button id="tool-pen"
+        class="w-full aspect-square flex flex-col items-center justify-center bg-primary text-on-primary font-bold hover:bg-secondary-container hover:text-on-surface transition-colors cursor-crosshair group"
+        title="Pen" aria-label="Select Pen tool">
+        <span class="material-symbols-outlined text-[24px]">edit</span>
+        <span class="font-label-sm text-[10px] uppercase mt-1">Pen</span>
+      </button>
+      <button id="tool-eraser"
+        class="w-full aspect-square flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container transition-colors cursor-crosshair group"
+        title="Eraser" aria-label="Select Eraser tool">
+        <span class="material-symbols-outlined text-[24px]">ink_eraser</span>
+        <span class="font-label-sm text-[10px] uppercase mt-1">Eraser</span>
+      </button>
+      <button id="tool-pan"
+        class="w-full aspect-square flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary-container transition-colors cursor-crosshair group"
+        title="Pan" aria-label="Select Pan tool">
+        <span class="material-symbols-outlined text-[24px]">pan_tool</span>
+        <span class="font-label-sm text-[10px] uppercase mt-1">Pan</span>
+      </button>
+
+      <div class="mt-auto border-t border-grid-border w-full flex flex-col items-center pt-4 pb-2">
+        <div class="pip mb-2"></div>
+        <span class="font-label-sm text-[9px] uppercase text-center w-full truncate px-1">READY_TO_DRAW</span>
+      </div>
+    </aside>
+
+    <!-- Main Canvas Area (Left Pane) -->
+    <main id="canvas-container"
+      class="col-start-2 row-start-2 row-span-1 bg-surface-container-lowest relative overflow-hidden flex flex-col blueprint-grid cursor-crosshair">
+      <!-- Canvas indicators / UI overlays -->
+      <div class="absolute top-4 left-4 flex items-center gap-2">
+        <div class="pip"></div>
+        <span
+          class="font-label-sm text-label-sm uppercase bg-surface-container-lowest px-2 py-1 industrial-border">Workspace_01</span>
+      </div>
+
+      <!-- Actual drawing area via JS/Canvas -->
+      <canvas id="drawing-canvas" class="w-full h-full absolute top-0 left-0 z-0"></canvas>
+
+      <!-- Corner Brackets (Neo-Brutalist depth cue) -->
+      <div class="absolute top-8 left-8 w-4 h-4 border-t-2 border-l-2 border-grid-border"></div>
+      <div class="absolute top-8 right-8 w-4 h-4 border-t-2 border-r-2 border-grid-border"></div>
+      <div class="absolute bottom-8 left-8 w-4 h-4 border-b-2 border-l-2 border-grid-border"></div>
+      <div class="absolute bottom-8 right-8 w-4 h-4 border-b-2 border-r-2 border-grid-border"></div>
+    </main>
+
+    <!-- Control Panel (Right Pane) -->
+    <aside
+      class="col-start-3 row-start-2 row-span-1 bg-surface-bright industrial-border-l flex flex-col overflow-hidden">
+      <!-- Header -->
+      <div class="p-4 industrial-border-b bg-surface-container-lowest flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="pip"></div>
+          <h2 class="font-label-sm text-label-sm uppercase font-bold">
+            Run Code
+          </h2>
+        </div>
+        <span class="material-symbols-outlined text-[18px]">code</span>
+      </div>
+
+      <!-- Action Area -->
+      <div class="p-6 flex flex-col gap-4 border-b border-grid-line">
+        <button id="run-btn"
+          class="primary-btn w-full py-4 font-label-sm text-label-sm uppercase font-bold flex items-center justify-center gap-2 text-lg">
+          RUN <span class="material-symbols-outlined">play_arrow</span>
+        </button>
+      </div>
+
+      <!-- Python Execution Output -->
+      <div class="p-6 border-b border-grid-line flex-1 flex flex-col min-h-0">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="pip"></div>
+          <h3 class="font-label-sm text-label-sm uppercase">Python Output</h3>
+        </div>
+        <div id="python-output"
+          class="bg-surface-container-lowest industrial-border flex-1 relative min-h-[150px] p-4 overflow-auto font-body-md text-sm text-on-surface whitespace-pre-wrap">
+        </div>
+      </div>
+
+      <!-- Output Display -->
+      <div class="p-6 flex-1 flex flex-col bg-on-surface text-on-primary min-h-0">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-2 h-2 bg-[#00FF00]"></div>
+          <h3 class="font-label-sm text-label-sm uppercase">Output Term</h3>
+        </div>
+        <div id="output-term"
+          class="flex-1 industrial-border border-tertiary p-4 overflow-auto font-body-md text-sm text-[#00FF00]">
+          &gt; Waiting for input...<br />
+          &gt; System initialized.<br />
+          <span class="animate-pulse">_</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Footer -->
+    <!-- Shared Component Logic -->
+    <footer
+      class="col-span-3 row-start-3 bg-surface-container-highest industrial-border-t flex justify-between items-center px-margin-page py-unit w-full z-20">
+      <div class="flex items-center gap-4">
+        <span class="font-label-sm text-label-sm text-on-surface-variant">© 2026 khoidesu</span>
+      </div>
+
+      <div class="flex items-center gap-6"></div>
+    </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-surface-container-lowest industrial-border p-6 w-96 max-w-[90%]">
+      <div class="flex justify-between items-center mb-6 industrial-border-b pb-2">
+        <h2 class="font-label-sm text-label-sm uppercase font-bold text-on-surface">Settings</h2>
+        <button id="close-settings" class="text-on-surface hover:text-primary">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="font-body-md text-on-surface">Dark Mode</span>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
+          <div
+            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
